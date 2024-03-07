@@ -1,0 +1,29 @@
+/* GRIGOREANU Andreea-Georgiana - 313CB */
+Rezultate pe masina locala: 
+Total: 100.0/100
+Valgrind: 20/20
+
+In program sunt definite cinci structuri care au urmatoarea utilizare:
+- o strcutura pentru lista dublu inlatuita cu santinela
+- o structura pentru Banda Magica - cu doua variabile de tip TLista2
+    -> 'deget' indica pozitia curenta in banda
+    -> 'lista' indica santinela (capul listei)
+- o structura pentru implemetarea cozii 
+    -> 'char* comanda' este un pointer pentru un sir de caractere (pentru a retine comenzile din fisier)
+    -> 'char parametru' reprezinta caracterul parametru/argument al comenzilor (WRITE <C>, INSERT_LEFT <C>, etc.)
+- o structura pentru implentarea stivei
+    -> 'void *adresa' este un pointer care retine adresele elementelor din banda pentru a le putea pune in UNDO si REDO
+
+In functia 'TBandaMagica* InitBandaMagica()':
+- setez pointerul 'deget' sa indice primul element din lista
+- setez pointerii 'pre' si 'urm' pentru primul element si santinela, astfel incat santinela sa indice primul element si primul element sa indice inapoi spre santinela
+- functia returneaza pointerul banda catre noua structura 'TBandaMagica' initializata
+
+In functia 'TLista create_celula(char* x, char y)':
+- se aloca memorie pentru sirul de caractere 'comanda' in functie de lungimea sirului de intrare x si atribuie adresa de memorie alocata campului comanda al celulei aux
+
+In functii.c am lasat comentate la final niste functii de afisare cu care m-am verificat.
+
+Citirea din fisier se face rand cu rand:
+- folosesc functia 'fgetc' pentru a trece pe urmatorul rand dupa ce citesc cu 'fscanf' numarul de comenzi, practic ignor caracterul '\n'
+- extrage comanda si parametrul (daca exista) din linie folosind 'strtok', astfel separ sirul de caractere in functie de delimitatorii spatiu si newline
